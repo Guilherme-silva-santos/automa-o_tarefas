@@ -31,37 +31,45 @@ time.sleep(3)
 
 tabela = pandas.read_csv("produtos.csv")
 
-# code
-pyautogui.click(x=860, y=258)
-pyautogui.write("Cod")
-pyautogui.press("tab")
+# fazer um loop para todos os produtos para todas as linhas da tabela, para cada linha da tabela executa 
+# para cada item dentro de uma lista de itens 
+for linha in tabela.index:
+    pyautogui.click(x=860, y=258)
+    # transforma para string o dado retornado 
+    # pega a linha e coluna que devem ser exibidos
+    # usa a var linha pois sempre que o for for executado, a linha vai mudando 
+    codigo = str(tabela.loc[linha, "codigo"])
+    pyautogui.write(codigo)
+    pyautogui.press("tab")
 
-#marca
-pyautogui.write("marca")
-pyautogui.press("tab")
+    marca = str(tabela.loc[linha, "marca"])
+    pyautogui.write(marca)
+    pyautogui.press("tab")
 
-#tipo
-pyautogui.write("tipo")
-pyautogui.press("tab")
+    tipo = str(tabela.loc[linha, "tipo"])
+    pyautogui.write(tipo)
+    pyautogui.press("tab")
 
-# categoria
-pyautogui.write("categoria")
-pyautogui.press("tab")
+    categoria = str(tabela.loc[linha, "categoria"])
+    pyautogui.write(categoria)
+    pyautogui.press("tab")
 
-# preco
-pyautogui.write("preço")
-pyautogui.press("tab")
+    preco_unitario = str(tabela.loc[linha, "preco_unitario"])
+    pyautogui.write(preco_unitario)
+    pyautogui.press("tab")
 
-# custo
-pyautogui.write("custo")
-pyautogui.press("tab")
+    custo = str(tabela.loc[linha, "custo"])
+    pyautogui.write(custo)
+    pyautogui.press("tab")
 
-# obs
-pyautogui.write("obs")
-pyautogui.press("tab")
-pyautogui.press("enter")
+    obs = str(tabela.loc[linha, "obs"])
+    #obs diferente então preenche   
+    
+    if obs != "nan":
+        pyautogui.write(obs)
+    pyautogui.press("tab")
+    pyautogui.press("enter")
 
 # apos cadastrar tudo eu preciso dar um scroll pra cima para que seja cadastrado um novo
 pyautogui.scroll(5000)
 
-# fazer um loop para todos os produtos para todas as linhas da tabela, então a cada linha da tabela deve ser feito o cadastro
